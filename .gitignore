@@ -54,3 +54,4 @@ dkms.conf
 # project files
 fuckin_file
 bin/
+include/zlib*
