@@ -1,6 +1,6 @@
 #include <zlib.h>
-#include <stdio.h>
 #include <stdlib.h>
+#include "utils.h"
 
 #define WRITE_DIR "/home/ubuntu/wungus/zip_send/fuckin_file"
 
@@ -21,6 +21,9 @@ int main() {
 	fputs("\n", fptr);
 	fclose(fptr);
 	printf("Fuck. It's done.\n");
+	int gork_arr[3] = {1, 2, 3};
+	// gork_arr = {1, 2, 3};
+	append_i(gork_arr, sizeof(gork_arr), 5);
 	return 0;
 
 }

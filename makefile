@@ -1,7 +1,7 @@
 # tool macros
 CC = gcc# FILL: the compiler
 # CXX ?= # FILL: the compiler
-CFLAGS =-Wall -Wextra -g -pthread -L /usr/local/lib/libz# FILL: compile flags
+CFLAGS =-Wall -Wextra -g -pthread -L /usr/local/lib/libz -I include# FILL: compile flags
 # CXXFLAGS := # FILL: compile flags
 DBGFLAGS = -g
 COBJFLAGS = $(CFLAGS) -c
