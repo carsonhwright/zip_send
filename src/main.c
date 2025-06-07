@@ -4,28 +4,34 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "utils.h"
+#include "simple_z.h"
 
-#define WRITE_DIR "/home/ubuntu/wungus/zip_send/fuckin_file"
-
+#define WRITE_DIR "/home/ubuntu/wungus/zip_send"
+#define BEST_COMPRESSION 9
 
 int main() {
-	// define file pointer
-	FILE* fptr;
-	// open file pointer at WRITE_DIR
-	fptr = fopen(WRITE_DIR, "w");
-	char data[21] = "Fuck a white bitch!\n";
-	// check that the file isn't jacked up
-	if (fptr == NULL)
-		printf("File is fucked\n");
-	else
-		printf("The file, she is-a good!\n");
+	char base_fn[14] = "base_file";
+	char zip_fn[12] = "zipped_file";
+	char unz_fn[9] = "unz_file";
+	FILE* to_be_def = make_file(base_fn);
+	printf("filename passed to get_fptr: %s\n", zip_fn);
+	FILE* def_to = get_fptr(zip_fn);
+	FILE* unz_out = get_fptr(unz_fn);
+	printf("finna zip\n");
+	// here def_to is in read mode, and to_be_def is in write mode
+	int zip_error = def(to_be_def, def_to, BEST_COMPRESSION);
+	if (zip_error!=Z_OK){
+		return 1;
+	}
+	// i think unz_out needs to be in write and def_to needs to be in read
+	int unz_error = inf(unz_out, def_to);
+	if (unz_error != Z_OK){
+		return 1;
+	}
+	fclose(def_to);
+	fclose(to_be_def);
+	fclose(unz_out);
 
-	// write some bullshit to the file
-	fputs(data, fptr);
-	//fputs("\n", fptr);
-	fclose(fptr);
-	printf("Fuck. It's done.\n");
-	
 	// use zlib to zip up the file at WRITE_DIR
 	
 	
